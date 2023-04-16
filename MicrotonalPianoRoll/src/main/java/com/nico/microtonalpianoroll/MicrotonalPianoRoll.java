@@ -149,10 +149,8 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
         txtFmax = new JTextField(5);
         
         
-        JButton btnOk = new JButton("OK");
-        
-        
         //BTN CHE SCATENA IL DRAW DEGLI ALTRI COMPONENTI
+        JButton btnOk = new JButton("OK");
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -202,35 +200,33 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
         JButton btnInfo = new JButton("?");
         btnInfo.setToolTipText("Clicca per maggiori informazioni.");
         btnInfo.setBackground(Color.CYAN);
-        
         btnInfo.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "L'applicativo permette di generare una tastiera microtonale inserendo parametri a scelta dall'utente e poter suonare con essa.\n\n"
                         + "PARAMETRI INIZIALI:\n"
-                        + "1) DIVISIONI prevede l'inserimento di un numero nel range [1-28] e determina il numero di suddivisioni frequenziali della tastiera;\n"
-                        + "2) FMIN e FMAX stabiliranno il range frequenziale (20-20k Hz) e determineranno, assieme al valore di divisione, le frequenze associate a ciascun pulsante della tastiera.\n "
-                        + "Alla pressione del tasto OK, se i parametri inseriti rispetteranno le condizioni precedentemente citate, l'utente si troverà a disposizione nella "
-                        + "sezione centrale dell'interfaccia grafica i pulsanti di una pseudo\n tastiera di pianoforte che, tramite una pressione del mouse, genererà un suono con "
-                        + "frequenza microtonale associata.\n "
-                        + "Oltre al click con il mouse, l'utente potrà generare il suono attraverso la pressione dei tasti della tastiera del pc, essi sono:\n\n"
+                        + "1) DIVISIONI prevede l'inserimento di un numero nel range [1-28] e determina il numero di suddivisioni frequenziali della tastiera, presentando una tastiera composta dal numero di divisioni specificato;\n"
+                        + "2) FMIN e FMAX stabiliranno il range frequenziale (da mantenere in 20-20k Hz) e determineranno, assieme al valore di divisione, le frequenze associate a ciascun pulsante della tastiera.\n "
+                        + "Alla pressione del tasto OK, se i parametri inseriti rispetteranno le condizioni precedentemente citate, l'utente si troverà a disposizione, nella "
+                        + "sezione centrale dell'interfaccia grafica, i pulsanti di una pseudo\n tastiera di pianoforte che, tramite la pressione del mouse su di essi, genererà un suono con "
+                        + "frequenza microtonale associata al pulsante premuto.\n "
+                        + "Oltre al click con il mouse, l'utente potrà generare il suono attraverso la pressione dei tasti della tastiera del computer, essi sono:\n\n"
                         + "                q w e r t y u i o p è a s d f g h j k l ò z x c v b n m ,\n"
                         + "    il pulsante < verrà utilizzato per generare una PAUSA (maggiori dettagli in seguito)\n\n"
-                        + "Nella sezione a destra vengono presentati i comandi utili a modificare il suono real-time; l'utente potrà scegliere di generare un'onda sinusoidale, quadra, triangolare o a dente di sega.\n"
+                        + "Nella sezione a destra vengono presentati i comandi adibiti a modificare il suono real-time; l'utente potrà scegliere di generare un'onda sinusoidale, quadra, triangolare o a dente di sega.\n"
                         + "L'onda generata in real-time sarà poi gestita tramite un'inviluppo; con gli slider si potranno modificare i tempi di ATTACK, DECAY e RELEASE (con valori tra 0.1 e 1). Il SUSTAIN non è gestito tramite slider dato che\n"
                         + "la nota continuerà a suonare finchè l'utente terrà premuto un pulsante.\n"
-                        + "Tramite + e - verrà consentito lo shift del range frequenziale.\n\n"
-                        + "Nella parte inferiore della schermata troveremo invece le componenti atte alla performance che ci permetteranno di RIPRODURRE, SALVARE, CARICARE e RESETTARE la performance musicale precedentemente REGISTRATA tramite\n"
-                        + "gli appositi pulsanti. La registrazione viene avviata dopo aver premuto il pulsante REC, e viene gestita tramite due principali modalità: \n\n"
+                        + "Tramite + e - verrà consentito lo shift del range frequenziale (associabile allo shift di 'ottava' in un pianoforte classico).\n\n"
+                        + "Nella parte inferiore della schermata si trovano le componenti atte alla performance che ci permetteranno di RIPRODURRE, SALVARE, CARICARE e RESETTARE la performance musicale precedentemente REGISTRATA.\n"
+                        + "La registrazione viene avviata dopo aver premuto il pulsante REC, e viene gestita tramite due principali modalità: \n\n"
                         + "1) L'utente decide di registrare la performance premento col MOUSE i pulsanti nell'interfaccia grafica.\n"
-                        + "2) L'utente decide di registrare la performance premendo i pulsanti della TASTIERA del PC.\n\n"
+                        + "2) L'utente decide di registrare la performance premendo i pulsanti della TASTIERA del computer.\n\n"
                         + "In entrambi i casi, per associare il valore ritmico alla NOTA precedentemente suonata (o alla PAUSA), bisogenrà premere i pulsanti da tastiera del pc [1, 2, 3, 4, 8] DOPO aver suonato una nota per assegnarle rispettivamente\n"
-                        + "il valore di DURATA [1/4, 2/4, 3/4, 1/8]. La corretta combinazione di operazioni da effettuare per registrare una performance sarà quindi: CLICK NOTA(o pausa) + NUMERO. Una non corretta procedura potrebbe portare\n"
-                        + "ad una registrazione non fedele della performance musicale che non sarà caricabile tramite il pulsante LOAD in un secondo momento.\n"
+                        + "il valore di DURATA [1/4, 2/4, 3/4, 1/8]. La corretta combinazione di operazioni da effettuare per registrare una performance sarà quindi: CLICK NOTA(o pausa) + NUMERO DURATA.\n"
                         + "N.B. il suono generato real-time NON CORRISPONDE alla performance registrata, dato che esso viene gestito da un inviluppo e quindi sarà l'utente a determinare la durata della nota nel momento in cui rilascerà\n"
                         + "il pulsante premuto.\n\n"
-                        + "Tramite PLAY si potrà riascoltare l'esecuzione, con RESET si potrà cancellare la performance e ripartire da zero, con SAVE la si potrà salvare in un formato testuale .txt mentre con LOAD potremo andare a ricaricare\n"
-                        + "la performance salvata (a patto che il formato sia rispettato) per poi poterla riascoltare premendo .\n"
+                        + "Tramite PLAY si potrà riascoltare l'esecuzione, con RESET si potrà cancellare la performance e ripartire da zero, con SAVE la si potrà salvare in un formato testuale .txt nella directory del progetto mentre con LOAD potremo\n"
+                        + "andare a ricaricare la performance salvata (a patto che il formato sia rispettato) per poi poterla riascoltare.\n"
                         + "La sequenza di note (o pause) registrate con relative durate viene notificata all'utente con una text-box posta in basso alla schermata e aggiornata man mano che la registrazione prosegue.", "MANUALE D'USO:", JOptionPane.INFORMATION_MESSAGE);                
             }
         });
@@ -429,194 +425,112 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
 
             switch(e.getKeyChar()){
                 /*la condizione if(!keyPressed) è necessaria perchè, se l'utente tenesse un pulsante della tastiera del pc
-                premuto, continuerebbe a chiamare il metodo playnote(n) il che genererebbe una grande quantità di note;
+                premuto, continuerebbe a chiamare il metodo playnote(n) il che genererebbe una grande quantità di note sovrapposte;
                 in questo modo viene bloccato il metodo finchè il tasto premuto non verrà rilasciato*/
                 
+                //NOTE
                 case 'q':
-                    if (!keyPressed){ 
-                        playNote(0);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(0);
                     break;                   
                 case 'w':
-                    if (!keyPressed){ 
-                        playNote(1);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(1);
                     break;
                 case 'e':
-                    if (!keyPressed){ 
-                        playNote(2);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(2);
                     break;
                 case 'r':
-                    if (!keyPressed){ 
-                        playNote(3);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(3);
                     break;
                 case 't':
-                    if (!keyPressed){ 
-                        playNote(4);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(4);
                     break;
                 case 'y':
-                    if (!keyPressed){ 
-                        playNote(5);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(5);
                     break;
                 case 'u':
-                    if (!keyPressed){ 
-                        playNote(6);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(6);
                     break;
                 case 'i':
-                    if (!keyPressed){ 
-                        playNote(7);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(7);
                     break;
                 case 'o':
-                    if (!keyPressed){ 
-                        playNote(8);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(8);
                     break;
                 case 'p':
-                    if (!keyPressed){ 
-                        playNote(9);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(9);
                     break;
                 case 'è':
-                    if (!keyPressed){ 
-                        playNote(10);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(10);
                     break;
                 case 'a':
-                    if (!keyPressed){ 
-                        playNote(11);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(11);
                     break;
                 case 's':
-                    if (!keyPressed){ 
-                        playNote(12);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(12);
                     break;
                 case 'd':
-                    if (!keyPressed){ 
-                        playNote(13);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(13);
                     break;
                 case 'f':
-                    if (!keyPressed){ 
-                        playNote(14);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(14);
                     break;
                 case 'g':
-                    if (!keyPressed){ 
-                        playNote(15);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(15);
                     break;
                 case 'h':
-                    if (!keyPressed){ 
-                        playNote(16);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(16);
                     break;
                 case 'j':
-                    if (!keyPressed){ 
-                        playNote(17);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(17);
                     break;
                 case 'k':
-                    if (!keyPressed){ 
-                        playNote(18);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(18);
                     break;
                 case 'l':
-                    if (!keyPressed){ 
-                        playNote(19);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(19);
                     break;
                 case 'ò':
-                    if (!keyPressed){ 
-                        playNote(20);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(20);
                     break;
                 case 'z':
-                    if (!keyPressed){ 
-                        playNote(21);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(21);
                     break;
                 case 'x':
-                    if (!keyPressed){ 
-                        playNote(22);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(22);
                     break;
                 case 'c':
-                    if (!keyPressed){ 
-                        playNote(23);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(23);
                     break;
                 case 'v':
-                    if (!keyPressed){ 
-                        playNote(24);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(24);
                     break;
                 case 'b':
-                    if (!keyPressed){ 
-                        playNote(25);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(25);
                     break;
                 case 'n':
-                    if (!keyPressed){ 
-                        playNote(26);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(26);
                     break;
                 case 'm':
-                    if (!keyPressed){ 
-                        playNote(27);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(27);
                     break;
                 case ',':
-                    if (!keyPressed){ 
-                        playNote(28);
-                        keyPressed = true;
-                    }
+                    if (!keyPressed) playNote(28);
                     break;
                     
+                    
+                 //PAUSA (considerata come nota degenere
                  case '<':
                     if(recording && bNote){
                         note.add(0.0);
                         txtaNT.setText(txtaNT.getText() + "[P");
                         
                         bNote = !bNote;
-                        bPause = !bPause;
+                        bPause = !bPause;                        
                     }
                     break;
+                  
                     
+                //DURATE    
                 case '1':
                     if(recording && !keyPressed && bPause){                      
                         rhythm.add(C);
@@ -675,8 +589,14 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
             
         }
         else if(e.getID() == KeyEvent.KEY_RELEASED){
-            envPlayer.dataQueue.queue(envelope, 2, 1);
             keyPressed = false;
+            try{
+            envPlayer.dataQueue.queue(envelope, 2, 1);
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Errore: "+ ex.toString(), "ATTENZIONE!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
         }
           // allow the event to be redispatched
           return false;
@@ -910,6 +830,10 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
     
     //GENERAZIONE NOTE
     private void playNote(double n){
+        keyPressed = true;
+
+        //check se premo un pulsante da tastiera computer non attualmente attivo
+        //date le divisioni specificate
         if(n > div){
             return;
         }
@@ -946,13 +870,13 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
     
     
     /*SYNTH*/
-    private void initSynth() {
+    private void initSynth() { 
         synth = JSyn.createSynthesizer();
         synth.start();
         
-        synth.remove(osc); 
-        
         //cambio della forma d'onda per il segnale
+        synth.remove(osc);         
+        
         switch(wave){
             case "Sine Wave":
                 //instrument = 0;
@@ -1001,10 +925,11 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
 
    
     
-    
+    /*SYNTH PER IL PLAYBACK*/
     private void initS_Playback() {
         SY = JSyn.createSynthesizer();
         
+        //cambio della forma d'onda per il segnale
         SY.remove(OSC); 
         switch(wave){
             case "Sine Wave":

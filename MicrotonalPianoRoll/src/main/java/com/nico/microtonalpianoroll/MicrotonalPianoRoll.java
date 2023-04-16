@@ -355,7 +355,6 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
                 
                 while (myReader.hasNextLine()) {
                   data = myReader.nextLine();
-                  //System.out.println(data);
                 }
                 myReader.close();
                 
@@ -409,6 +408,7 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
             
             txtaNT.setText(data);
             txtaNT.setBackground(Color.yellow);
+            recording = false;                      //per mantenere la casella delle note-pause di colore giallo quando carico la performance
             colorBtns();
             
         }     
@@ -518,7 +518,7 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
                     break;
                     
                     
-                 //PAUSA (considerata come nota degenere
+                 //PAUSA (considerata come nota degenere)
                  case '<':
                     if(recording && bNote){
                         note.add(0.0);
@@ -609,15 +609,12 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
     
     //DISEGNA IL RESTO DELLA GUI
     private void draw(){
-        //Scrollable Panel
-        //scrPane.setSize(500, 300);
         scrPane.setWheelScrollingEnabled(true);      
         
         //pannello inserito nello scrollable panel contenente i btns per generazione note
         panelCenter.removeAll();
         panelEast.removeAll();
         panelSouth.removeAll();
-        //setSize(800, 800);
         
         panelCenter.setLayout(new BoxLayout(panelCenter, BoxLayout.X_AXIS));        
         panelEast.setLayout(new BoxLayout(panelEast, BoxLayout.Y_AXIS));    
@@ -643,10 +640,6 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
                 @Override
                 public void mousePressed(java.awt.event.MouseEvent evt) {
                     playNote(x);
-                    /*if(recording){
-                    rhythm.add(C);
-                    txtaNT.setText(txtaNT.getText() + " 1/4,");
-                    }*/
                 }
                 @Override
                 public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -879,22 +872,18 @@ public class MicrotonalPianoRoll extends JFrame implements ActionListener, JMC, 
         
         switch(wave){
             case "Sine Wave":
-                //instrument = 0;
                 synth.add(osc = new SineOscillator());
                 break;
             
             case "Square Wave":
-                //instrument = 80;
                 synth.add(osc = new SquareOscillator());
                 break;
                 
             case "Triangle Wave":
-                //instrument = 2;
                 synth.add(osc = new TriangleOscillator());
                 break;
                 
             case "Sawtooth Wave":
-                //instrument = 81;
                 synth.add(osc = new SawtoothOscillatorBL());
                 break;
         }
